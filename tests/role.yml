@@ -2,8 +2,17 @@
 - hosts: localhost
   remote_user: root
 
+
   roles:
 
-    - { role: testForTimezone, timezoneCity: "Etc/UTC", debug: false }
-    - { role: testForTimezone, timezoneCity: "America/Montreal", debug: false }
+## two passes
+
+    - { role: testForGroup, name: "docker", expected: "present", debug: false }
+    - { role: testForGroup, name: "dockerX", expected: "absent", debug: false }
+
+## two failures
+
+    - { role: testForGroup, name: "dockerX", expected: "present", debug: false }
+    - { role: testForGroup, name: "docker", expected: "absent", debug: false }
+
 

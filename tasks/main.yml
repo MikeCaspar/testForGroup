@@ -3,10 +3,9 @@
 - set_fact:
     testPassed: false
 
-
 - name: "Start check of group {{ name }}"
-  stat:
-    path: "{{ path }}"
+  command: "grep '^{{ name }}' /etc/group"
+  ignore_errors: true
   register: st
 
 - debug:

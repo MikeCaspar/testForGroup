@@ -1,12 +1,12 @@
-- name: set test to passed if path exists and state expected = present
+- name: set test to passed if group exists and expected = present
   set_fact:
-      ansibletestFolderTestPassed: true
+      testPassed: true
   when:
-    - st.stat.exists
+    - st.rc == 0
 
-- name: set test to failed if path does not exist and state expected = present
+- name: set test to failed if group does not exist and state expected = present
   set_fact:
-      ansibletestFolderTestPassed: false
+      testPassed: false
   when:
-    - not st.stat.exists
+    - not st.rc == 0
 
