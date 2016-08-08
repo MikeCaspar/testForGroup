@@ -1,3 +1,4 @@
-ansibletestTimezoneTestPassed: false
+testPassed: false
 debug: false
-timezoneCity: null
+expected: null
+

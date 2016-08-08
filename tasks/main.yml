@@ -1,36 +1,37 @@
 ---
 
 - set_fact:
-    ansibletestTimezoneTestPassed: false
+    testPassed: false
 
-- name: "Check for a timezone of {{ timezoneCity }}"
-  command: "cat /etc/timezone"
+
+- name: "Start check of group {{ name }}"
+  stat:
+    path: "{{ path }}"
   register: st
 
 - debug:
-    var: st.stdout
+    var: st
   when: "{{debug==true}}"
 
-- debug:
-    var: timezoneCity
-  when: "{{debug==true}}"
-
-- name: set test to passed if the city string matches
-  set_fact:
-      ansibletestTimezoneTestPassed: true
-  when: st.stdout == '{{ timezoneCity }}'
-
-- debug:
-    var: ansibletestTimezoneTestPassed
-  when: "{{debug==true}}"
-
-- debug:
-    msg: "TEST_FAILED: timezoneCity of {{ timezoneCity }} "
+- include: test_present.yml
   when:
-    - ansibletestTimezoneTestPassed == false
+    - "{{ expected == 'present' }}"
+
+- include: test_absent.yml
+  when:
+    - "{{ expected == 'absent' }}"
 
 - debug:
-    msg: "TEST_PASSED: with timezoneCity of {{ timezoneCity }} "
+    var: testPassed
+  when: "{{debug==true}}"
+
+- debug:
+    msg: "TEST_FAILED: group {{ name }} expected {{ expected }} "
   when:
-    - ansibletestTimezoneTestPassed == true
+    - testPassed == false
+
+- debug:
+    msg: "TEST_PASSED: group {{ name }} expected {{ expected }} "
+  when:
+    - testPassed == true
 
