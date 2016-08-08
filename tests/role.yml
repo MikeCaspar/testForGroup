@@ -1,0 +1,9 @@
+---
+- hosts: localhost
+  remote_user: root
+
+  roles:
+
+    - { role: testForTimezone, timezoneCity: "Etc/UTC", debug: false }
+    - { role: testForTimezone, timezoneCity: "America/Montreal", debug: false }
+

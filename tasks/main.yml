@@ -1,0 +1,36 @@
+---
+
+- set_fact:
+    ansibletestTimezoneTestPassed: false
+
+- name: "Check for a timezone of {{ timezoneCity }}"
+  command: "cat /etc/timezone"
+  register: st
+
+- debug:
+    var: st.stdout
+  when: "{{debug==true}}"
+
+- debug:
+    var: timezoneCity
+  when: "{{debug==true}}"
+
+- name: set test to passed if the city string matches
+  set_fact:
+      ansibletestTimezoneTestPassed: true
+  when: st.stdout == '{{ timezoneCity }}'
+
+- debug:
+    var: ansibletestTimezoneTestPassed
+  when: "{{debug==true}}"
+
+- debug:
+    msg: "TEST_FAILED: timezoneCity of {{ timezoneCity }} "
+  when:
+    - ansibletestTimezoneTestPassed == false
+
+- debug:
+    msg: "TEST_PASSED: with timezoneCity of {{ timezoneCity }} "
+  when:
+    - ansibletestTimezoneTestPassed == true
+
