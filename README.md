@@ -1,13 +1,12 @@
-testForTimezone
+testForGroup
 =============================
 
-testForTimezone (experimental role)
+testForGroup (experimental role)
 
 
-[![Build Status](https://travis-ci.org/MikeCaspar/testForTimezone.svg?branch=master)](https://travis-ci.org/MikeCaspar/testForTimezone)
+[![Build Status](https://travis-ci.org/MikeCaspar/testForGroup.svg?branch=master)](https://travis-ci.org/MikeCaspar/testForGroup)
 
 **this role is not ready.. do not use !**
-
 
 This role is intended to be used with the maintain_ / test_ loop presented at AnsibleFest 2016 in SFO
 
@@ -34,7 +33,7 @@ Working ansible installation 1.9 or above
 Role Variables
 --------------
 
-* timezoneCity (string) - Mandatory
+* name: (string) - Mandatory
 * debug: (true/false) - Optionally shows debug of vars as it proceeds (defaults to **false**) 
 
 
@@ -46,13 +45,13 @@ no dependencies
 Example Playbook
 ----------------
 
-test/confirm that "America/Toronto" is set as the current Timezone City
+test/confirm that group "docker" exists
 
     # playbook:  application1_proxy_test.yml
     
     - hosts: servers
       roles:
-         - { role: MikeCaspar.testForTimezone, timezoneCity:"America/Toronto" }
+         - { role: MikeCaspar.testForGroup, name: "docker" }
      
 ## License
 
@@ -61,4 +60,5 @@ MIT
 ## Author Information
 
 This role was created in 2016 by [Mike Caspar](http://www.caspar.com/).
+
 # testForGroup
