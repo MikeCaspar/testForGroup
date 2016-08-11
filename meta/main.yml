@@ -1,6 +1,6 @@
 galaxy_info:
   author: MikeCaspar
-  description: Playbook test role for _test/_maintain loop - testForGroup
+  description: Playbook TDD/BDD style test role for _test/_maintain loop - testForGroup
   company: Caspar Computer Services Inc.
   
   # If the issue tracker for your role is not on github, uncomment the
