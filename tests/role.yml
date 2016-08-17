@@ -19,5 +19,5 @@
 
     - { role: testForGroup, name: "docker", expected: "absent", debug: true }
     - { role: testForGroup, name: "docker", expected: "absent", debug: false, immediate_exit_on_fail: true }
-    
+
 
