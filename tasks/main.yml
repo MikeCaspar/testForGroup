@@ -25,12 +25,21 @@
   when: "{{debug==true}}"
 
 - debug:
+    msg: "TEST_PASSED: group {{ name }} expected {{ expected }} "
+  when:
+    - testPassed == true
+
+# failed tests either debug a failed message or fail immediately (as requested by the calling _test playbook
+
+- debug:
     msg: "TEST_FAILED: group {{ name }} expected {{ expected }} "
   when:
     - testPassed == false
 
-- debug:
-    msg: "TEST_PASSED: group {{ name }} expected {{ expected }} "
+- fail:
+    msg: "TEST_FAILED: group {{ name }} expected {{ expected }} "
   when:
-    - testPassed == true
+    - testPassed == false
+    - immediate_exit_on_fail == true
+
 

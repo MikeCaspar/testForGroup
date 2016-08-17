@@ -36,7 +36,7 @@ Role Variables
 * name: (string) - Mandatory
 * expected: (string) - Mandatory - 'present' or 'absent'
 * debug: (true/false) - Optionally shows debug of vars as it proceeds (defaults to **false**) 
-
+* immediate_exit_on_fail: (true/false) - Optionally fails immediately on fail (defaults to **false**)
 
 Dependencies
 ------------
