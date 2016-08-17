@@ -35,6 +35,7 @@
     msg: "TEST_FAILED: group {{ name }} expected {{ expected }} "
   when:
     - testPassed == false
+    - immediate_exit_on_faile == false
 
 - fail:
     msg: "TEST_FAILED: group {{ name }} expected {{ expected }} "
